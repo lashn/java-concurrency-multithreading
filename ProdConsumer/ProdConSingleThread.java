@@ -12,7 +12,9 @@ class Prod implements Runnable {
     public void run() {
         try{
             for (int i=0;i<10;i++) {
-                System.out.println(que.add("message by Prod" + i));
+                if (que.size()<5) {
+                    System.out.println(que.add("message by Prod" + i));
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -30,7 +32,9 @@ class Cons implements Runnable {
     public void run(){
         try{
             for (int i=0;i<20;i++) {
-                System.out.println("Cons"+i+" consumed "+que.poll());
+                while(que.isEmpty()!=true) {
+                    System.out.println("Cons" + i + " consumed " + que.poll());
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
