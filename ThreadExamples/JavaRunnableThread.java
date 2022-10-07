@@ -1,6 +1,6 @@
 package ThreadExamples;
 
-class RunnableThread implements Runnable{
+class MyRunnableThreadClass implements Runnable{
     @Override
     public void run()
     {
@@ -19,7 +19,7 @@ class RunnableThread implements Runnable{
 
 public class JavaRunnableThread {
     public static void main(String[] args) throws InterruptedException {
-        Thread T1 = new Thread(new RunnableThread());
+        Thread T1 = new Thread(new MyRunnableThreadClass());
         System.out.println("MAIN: before start class T1 thread "+T1.getState());
         T1.start();
 

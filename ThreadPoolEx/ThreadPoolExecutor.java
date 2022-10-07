@@ -1,13 +1,16 @@
 package ThreadPoolEx;
 import java.util.concurrent.*;
 
+class ThreadPool{
+
+}
 
 public class ThreadPoolExecutor {
     public static void main(String[] args) {
 //        Executor ThPool = new ThreadPoolExecutor();
-        int numProcs = Runtime.getRuntime().availableProcessors();
-        Executor ThreadPool = Executors.newFixedThreadPool(5);
-        
+        int numProc = Runtime.getRuntime().availableProcessors();
+        Executor ThreadPool = Executors.newFixedThreadPool(numProc);
+
         }
     }
-}
+

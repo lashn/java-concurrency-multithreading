@@ -1,11 +1,13 @@
 package ProdConsumer;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
-class Prod implements Runnable {
-    BlockingQueue que;
-    Prod(BlockingQueue que){
+
+
+class Prod1 implements Runnable {
+    Queue que;
+    Prod1(Queue que){
         this.que=que;
     }
     //produce messages and add to queue
@@ -14,7 +16,6 @@ class Prod implements Runnable {
         try{
             for (int i=0;i<10;i++) {
                 if (que.size()<5) {
-//                    MyMessage
                     System.out.println(que.add("message by Prod" + i));
                 }
             }
@@ -24,18 +25,19 @@ class Prod implements Runnable {
     }
 }
 
-class Cons implements Runnable {
-    BlockingQueue que;
-    Cons(BlockingQueue que){
+class Cons1 implements Runnable {
+    Queue que;
+    Cons1(Queue que){
         this.que=que;
     }
     //consume messages when the queue is not empty
     @Override
     public void run(){
         try{
-            for (int i=0;i<20;i++) {
+            for (int i=0;i<5;i++) {
                 while(que.isEmpty()!=true) {
-                    System.out.println("Cons" + i + " consumed " + que.take());
+                    System.out.println("Cons" + i + " consumed " + que.poll());
+                    System.out.println(que);
                 }
             }
         }catch (Exception e){
@@ -45,17 +47,18 @@ class Cons implements Runnable {
 }
 
 
-public class ProdConSingleThread {
+public class PCwithNormalQueueforLearning {
     public static void main(String[] args) throws InterruptedException {
-        BlockingQueue que = new ArrayBlockingQueue(5);
-        Thread P1 = new Thread(new Prod(que));
-        Thread C1 = new Thread(new Cons(que));
-        Thread C2 = new Thread(new Cons(que));
+        Queue que = new PriorityQueue(5);
+        Thread P1 = new Thread(new Prod1(que));
+        Thread C1 = new Thread(new Cons1(que));
+        Thread C2 = new Thread(new Cons1(que));
         P1.start();
         C1.start();
-//        System.out.println("at que);
+        System.out.println(que);
 
     }
 
 }
+
 

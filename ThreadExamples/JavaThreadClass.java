@@ -15,7 +15,6 @@ class Thread1 extends Thread {
         }
         System.out.println("class T1 thread done");
     }
-
 }
 
 public class JavaThreadClass {
